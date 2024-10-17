@@ -1,4 +1,3 @@
-import 'package:fellowpay/Screens/SplashScreen/splashscreentwo.dart';
 import 'package:fellowpay/Styles/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -70,12 +69,6 @@ class _SplashOneState extends State<SplashOne> with SingleTickerProviderStateMix
       size: 75.0,
     );
 
-
-    Future.delayed(const Duration(seconds: 15), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => SplashTwo()));
-    });
-
-
     return Scaffold(
       body: Stack(
         children: [
@@ -83,6 +76,21 @@ class _SplashOneState extends State<SplashOne> with SingleTickerProviderStateMix
           Container(
             color: blue, // Adjust the blue color if needed
           ),
+
+          // // Top left white curve
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   child: ClipPath(
+          //     clipper: TopLeftClipper(),
+          //     child: Container(
+          //       color: Colors.white,
+          //       height: 200, // Adjusted height to better match the UI
+          //       width: MediaQuery.of(context).size.width,
+          //     ),
+          //   ),
+          // ),
+
 
           Positioned(
             top: 0,
@@ -200,6 +208,36 @@ class _SplashOneState extends State<SplashOne> with SingleTickerProviderStateMix
   }
 }
 
+// // Custom clipper for top left folded curve
+// class TopLeftClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     var path = Path();
+//
+//     // Start at the top-left corner
+//     path.moveTo(0, 0);
+//
+//     // Draw a straight line downwards
+//     path.lineTo(0, size.height * 0.55);
+//
+//     // Curve the corner sharply, to match the fold effect
+//     path.quadraticBezierTo(
+//       size.width * 0.1, size.height * 0.9, // Sharper curve from the top-left
+//       size.width * 0.2, size.height * 0.5, // Ends earlier for the fold effect
+//     );
+//
+//     // Draw a line to the top-right corner
+//     path.lineTo(size.width/3, 0);
+//
+//     path.close(); // Complete the path
+//     return path;
+//   }
+
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }
+
+// Custom clipper for top left curved container
 class TopLeftClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
