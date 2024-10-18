@@ -1,7 +1,14 @@
-import 'package:fellowpay/Screens/SplashScreen/splashscreen.dart';
+import 'package:fellowpay/Screens/BottomNavigationBar/Account/Settings/contactUs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'Screens/BottomNavigationBar/Account/Settings/pinReset.dart';
+import 'Screens/BottomNavigationBar/Account/Settings/security.dart';
+import 'Screens/BottomNavigationBar/Home/Investment/aiPayments.dart';
+import 'Screens/BottomNavigationBar/Home/Investment/aiSuggestion.dart';
+import 'Screens/BottomNavigationBar/Home/home.dart';
+import 'Screens/SplashScreen/splashscreenthree.dart';
+import 'Screens/SplashScreen/splashscreentwo.dart';
 import 'Styles/colours.dart';
 
 void main() {
@@ -28,7 +35,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
               primaryColor: white
           ),
-          home: const SplashOne(),
+          home: const AiPayment(),
         );
       }
     );
