@@ -1,3 +1,4 @@
+import 'package:fellowpay/Screens/Auth/register/verification_complete.dart';
 import 'package:fellowpay/Styles/colours.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ class _OtpVerificationState extends State<OtpVerification> {
 
   // Example country items (replace this with actual data)
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,24 +33,31 @@ class _OtpVerificationState extends State<OtpVerification> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Verify your phone number with code',
-                      style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold),
+                      'We just sent an SMS',
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: Text(
                             'Enter the security code we sent to +32123456789',
-                            style: TextStyle(color: Color(0xFF878787),),
+                            style: TextStyle(
+                              color: Color(0xFF878787),
+                            ),
                           ),
                         ),
-                        Text('Edit',style: TextStyle(color: Color(0xFF1DA1FA),fontWeight: FontWeight.bold),)
+                        Text(
+                          'Edit',
+                          style: TextStyle(
+                              color: Color(0xFF1DA1FA),
+                              fontWeight: FontWeight.bold),
+                        )
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -73,31 +80,42 @@ class _OtpVerificationState extends State<OtpVerification> {
                         ),
                       ],
                     ),
-
-
-                    SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Didn't get the code? ",
-                          style: TextStyle(color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Resend it',
-                              style: TextStyle(
-                                color: Color(0xFF1DA1FA),
-                                fontWeight: FontWeight.bold,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  print('Sign in tapped');
-                                  // Navigate to sign in page or handle sign-in action
-                                },
+                    SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              text: "Didn't get the code? ",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Resend it',
+                                  style: TextStyle(
+                                    color: Color(0xFF1DA1FA),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time_outlined,
+                              color: Color(0xffE7EAEB),
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Text('45s')
+                          ],
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -114,7 +132,12 @@ class _OtpVerificationState extends State<OtpVerification> {
                   ),
                   onPressed: () {
                     // Handle sending OTP logic here
-                    print('Send Code button pressed');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VerificationComplete()));
+
+                    // print('Send Code button pressed');
                   },
                   child: Text(
                     'Done',
@@ -131,5 +154,5 @@ class _OtpVerificationState extends State<OtpVerification> {
 }
 
 void main() => runApp(MaterialApp(
-  home: OtpVerification(),
-));
+      home: OtpVerification(),
+    ));

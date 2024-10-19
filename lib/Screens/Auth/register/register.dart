@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../Styles/colours.dart';
+import 'opt_verification.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String? selectedValue;
+  String? selectedValue = 'Nigeria (+234)'; // Default to Nigeria
 
   // List of countries and their dialing codes
   List<Map<String, String>> items = [
@@ -55,7 +57,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     {'name': 'China', 'code': '(+86)', 'flag': 'CN'},
     {'name': 'Colombia', 'code': '(+57)', 'flag': 'CO'},
     {'name': 'Comoros', 'code': '(+269)', 'flag': 'KM'},
-    {'name': 'Congo, Democratic Republic of the', 'code': '(+243)', 'flag': 'CD'},
+    {
+      'name': 'Congo, Democratic Republic of the',
+      'code': '(+243)',
+      'flag': 'CD'
+    },
     {'name': 'Congo, Republic of the', 'code': '(+242)', 'flag': 'CG'},
     {'name': 'Costa Rica', 'code': '(+506)', 'flag': 'CR'},
     {'name': 'Croatia', 'code': '(+385)', 'flag': 'HR'},
@@ -163,7 +169,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     {'name': 'Rwanda', 'code': '(+250)', 'flag': 'RW'},
     {'name': 'Saint Kitts and Nevis', 'code': '(+1-869)', 'flag': 'KN'},
     {'name': 'Saint Lucia', 'code': '(+1-758)', 'flag': 'LC'},
-    {'name': 'Saint Vincent and the Grenadines', 'code': '(+1-784)', 'flag': 'VC'},
+    {
+      'name': 'Saint Vincent and the Grenadines',
+      'code': '(+1-784)',
+      'flag': 'VC'
+    },
     {'name': 'Samoa', 'code': '(+685)', 'flag': 'WS'},
     {'name': 'San Marino', 'code': '(+378)', 'flag': 'SM'},
     {'name': 'Sao Tome and Principe', 'code': '(+239)', 'flag': 'ST'},
@@ -214,7 +224,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     {'name': 'Zimbabwe', 'code': '(+263)', 'flag': 'ZW'},
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -231,18 +240,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     Text(
                       'Verify your phone number with code',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 10),
                     Text(
                       'We’ll send you a code. It helps keep your account secure',
                       style: TextStyle(color: Color(0xFF878787)),
                     ),
+                    SizedBox(height: 30),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Your Phone Number',
+                        style: TextStyle(color: black, fontSize: 16),
+                      ),
+                    ),
                     SizedBox(height: 10),
                     Row(
                       children: [
                         Container(
-                          width: 150,
+                          width: MediaQuery.of(context).size.width * 0.25,
                           padding: const EdgeInsets.all(5.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -260,23 +278,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                               hint: const Text('Select one country'),
                               isExpanded: true,
-                              style: const TextStyle(color: Colors.black, fontSize: 16),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 16),
                               onChanged: (String? newValue) {
                                 setState(() {
                                   selectedValue = newValue;
                                 });
                               },
-                              items: items.map<DropdownMenuItem<String>>((item) {
+                              items:
+                                  items.map<DropdownMenuItem<String>>((item) {
                                 return DropdownMenuItem<String>(
                                   value: '${item['name']} ${item['code']}',
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      CountryFlags.flag(item['flag']!, width: 30),
-                                      SizedBox(width: 10),
+                                      CountryFlags.flag(item['flag']!,
+                                          width: 30),
+                                      SizedBox(width: 5),
                                       Flexible(
-                                        child: Text('${item['name']} ${item['code']}',overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,),
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Text(
+                                            '${item['code']}',
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -285,44 +313,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         SizedBox(
                           height: 60,
-                          width: 150,
+                          width: MediaQuery.of(context).size.width * 0.55,
                           child: TextField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
-                                focusedBorder:  OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(color:  Color(0xFF1DA1FA),
-                                    )
-                                ),
+                                    borderSide: BorderSide(
+                                      color: Color(0xFF1DA1FA),
+                                    )),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(color: Color(0xFFE7EAEB),
-                                    )
-                                )
-                            ),
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFE7EAEB),
+                                    ))),
                           ),
                         ),
-
-
                       ],
-
-
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Align(
                       alignment: Alignment.topLeft,
                       child: RichText(
                         text: TextSpan(
                           text: 'Already have an account? ',
-                          style: TextStyle(color: Colors.black), // Default text style
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                          ), // Default text style
                           children: <TextSpan>[
                             TextSpan(
                               text: 'Sign in',
                               style: TextStyle(
-                                color:Color(0xFF1DA1FA), // Color for the "Sign in" text
+                                color: Color(
+                                    0xFF1DA1FA), // Color for the "Sign in" text
                                 fontWeight: FontWeight.bold,
                               ),
                               recognizer: TapGestureRecognizer()
@@ -335,23 +366,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     )
-
                   ],
                 ),
               ),
               SizedBox(
-                width: double.infinity,
+                  width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      backgroundColor:  Color(0xFF1DA1FA)
-                    ),
-                      onPressed: (){}, child: Text('Send  Code',style: TextStyle(color: Colors.white),)))
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          backgroundColor: Color(0xFF1DA1FA)),
+                      onPressed: () {
+                        // OtpVerification
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OtpVerification()));
+                      },
+                      child: Text(
+                        'Send Code',
+                        style: TextStyle(color: Colors.white),
+                      )))
 
               // Display the selected country
-
             ],
           ),
         ),

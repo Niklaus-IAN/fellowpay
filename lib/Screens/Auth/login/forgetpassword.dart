@@ -2,10 +2,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
+import 'createforgetpassword.dart';
+
 class ForgetPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 40.0, // Set the height you want
+      ),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -20,23 +26,17 @@ class ForgetPasswordScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Forgot Password?',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      'Don\'t worry! it happens. Please enter the code sent to +32 123456789',
                       style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold),
+                        color: Colors.black,
+                      ),
                     ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Don\'t worry! it happens. Please enter the code sent to +32 123456789',
-                            style: TextStyle(color: Colors.black,),
-                          ),
-                        ),
-                        Text('Edit',style: TextStyle(color: Color(0xFF1DA1FA),fontWeight: FontWeight.bold),)
-                      ],
-                    ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -47,7 +47,6 @@ class ForgetPasswordScreen extends StatelessWidget {
                             numberOfFields: 5,
                             fieldWidth: 50.0,
                             showFieldAsBox: true,
-
                             borderRadius: BorderRadius.circular(8.0),
                             borderColor: Colors.blue,
                             autoFocus: true,
@@ -59,31 +58,42 @@ class ForgetPasswordScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-
-
-                    SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Didn't get the code? ",
-                          style: TextStyle(color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Resend it',
-                              style: TextStyle(
-                                color: Color(0xFF1DA1FA),
-                                fontWeight: FontWeight.bold,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  print('Sign in tapped');
-                                  // Navigate to sign in page or handle sign-in action
-                                },
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: RichText(
+                            text: TextSpan(
+                              text: "Didn't get the code? ",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'Resend it',
+                                  style: TextStyle(
+                                    color: Color(0xFF1DA1FA),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time_outlined,
+                              color: Color(0xffE7EAEB),
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Text('45s')
+                          ],
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -100,7 +110,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     // Handle sending OTP logic here
-                    print('Send Code button pressed');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgetPasswordNew()));
                   },
                   child: Text(
                     'Continue',

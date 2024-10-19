@@ -63,7 +63,6 @@ class _SplashThreeState extends State<SplashThree> {
 
   @override
   Widget build(BuildContext context) {
-    print('Wht is the problem');
     return Scaffold(
       body: Stack(
         children: [
@@ -123,7 +122,8 @@ class _SplashThreeState extends State<SplashThree> {
                             children: List.generate(3, (index) {
                               return AnimatedContainer(
                                 duration: const Duration(milliseconds: 300),
-                                margin: const EdgeInsets.symmetric(horizontal: 5),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5),
                                 width: _currentIndex == index ? 36 : 10,
                                 height: 10,
                                 decoration: BoxDecoration(
@@ -169,6 +169,12 @@ class _SplashThreeState extends State<SplashThree> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   print('Next button pressed');
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RegisterScreen()),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   splashFactory: NoSplash.splashFactory,
@@ -178,7 +184,8 @@ class _SplashThreeState extends State<SplashThree> {
                                   ),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       'Next',
@@ -223,24 +230,24 @@ class _SplashThreeState extends State<SplashThree> {
                       duration: const Duration(milliseconds: 500),
                       child: _currentIndex == index
                           ? Container(
-                        height: 400,
-                        color: Colors.transparent,
-                        child: Column(
-                          children: [
-                            Image.asset(imageList[index]),
-                            const SizedBox(height: 23),
-                            Text(
-                              textList[index],
-                              style: TextStyle(
-                                color: black,
-                                fontStyle: FontStyle.italic,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
+                              height: 400,
+                              color: Colors.transparent,
+                              child: Column(
+                                children: [
+                                  Image.asset(imageList[index]),
+                                  const SizedBox(height: 23),
+                                  Text(
+                                    textList[index],
+                                    style: TextStyle(
+                                      color: black,
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      )
+                            )
                           : const SizedBox.shrink(),
                     );
                   },
@@ -253,7 +260,6 @@ class _SplashThreeState extends State<SplashThree> {
     );
   }
 }
-
 
 class WaveClipper extends CustomClipper<Path> {
   @override

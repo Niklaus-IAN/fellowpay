@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-
+import 'email_verified.dart';
 
 class EmailVerifyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
         top: true,
         child: Padding(
@@ -16,7 +15,7 @@ class EmailVerifyScreen extends StatelessWidget {
             children: [
               SizedBox(height: 20),
               Text(
-                'Verify your email',
+                "Verify your email",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -34,7 +33,6 @@ class EmailVerifyScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   Expanded(
                     child: Text(
                       'balogunkrixus@gmail.com', // Replace with your dynamic email
@@ -44,7 +42,6 @@ class EmailVerifyScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   GestureDetector(
                     onTap: () {
                       // Handle resend action
@@ -52,16 +49,13 @@ class EmailVerifyScreen extends StatelessWidget {
                     child: Text(
                       'Resend it',
                       style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF1DA1FA),
-                        fontWeight: FontWeight.bold
-                      ),
+                          fontSize: 16,
+                          color: Color(0xFF1DA1FA),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-
                 ],
               ),
-
               Spacer(),
               Center(
                 child: TextButton(
@@ -71,11 +65,15 @@ class EmailVerifyScreen extends StatelessWidget {
                   child: Text(
                     "I'll do it later",
                     style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFF1DA1FA),
-                    ),
+                        fontSize: 16,
+                        color: Color(0xFF1DA1FA),
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.grey),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               SizedBox(
                 width: double.infinity,
@@ -89,6 +87,10 @@ class EmailVerifyScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     // Handle open email action
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VerificationEmail()));
                   },
                   child: Text(
                     'Open email',

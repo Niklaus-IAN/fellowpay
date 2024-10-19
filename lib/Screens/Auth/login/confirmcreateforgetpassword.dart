@@ -1,9 +1,11 @@
+import 'package:fellowpay/Screens/Auth/login/passwordRecreated.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmForgetPasswordNew extends StatefulWidget {
   @override
-  _ConfirmForgetPasswordNewState createState() => _ConfirmForgetPasswordNewState();
+  _ConfirmForgetPasswordNewState createState() =>
+      _ConfirmForgetPasswordNewState();
 }
 
 class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
@@ -12,6 +14,10 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 40.0, // Set the height you want
+      ),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -19,12 +25,6 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.black),
-                onPressed: () {
-                  // Handle back button action
-                },
-              ),
               Text(
                 "Confirm password",
                 style: TextStyle(
@@ -50,14 +50,15 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: BorderSide(color: Color(0xFF007B5D)),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               SizedBox(height: 16),
               RichText(
                 text: TextSpan(
                   text: 'At least ',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Colors.black, fontSize: 17),
                   children: [
                     TextSpan(
                       text: '8 characters,',
@@ -66,11 +67,6 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.none,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Handle Terms of Use click
-                          print("Terms of use clicked");
-                        },
                     ),
                     TextSpan(text: ' Containing '),
                     TextSpan(
@@ -80,11 +76,6 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Handle Privacy Policies click
-                          print("Privacy Policies clicked");
-                        },
                     ),
                     TextSpan(text: ' and '),
                     TextSpan(
@@ -95,11 +86,6 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Handle Privacy Policies click
-                          print("Privacy Policies clicked");
-                        },
                     ),
                   ],
                 ),
@@ -118,6 +104,10 @@ class _ConfirmForgetPasswordNewState extends State<ConfirmForgetPasswordNew> {
                   ),
                   onPressed: () {
                     // Handle button action
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Passwordrecreated()));
                   },
                   child: Text(
                     'Continue',

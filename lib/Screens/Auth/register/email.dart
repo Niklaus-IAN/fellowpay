@@ -1,10 +1,11 @@
+import 'package:fellowpay/Screens/Auth/register/verifyEmail.dart';
+import 'package:fellowpay/Styles/colours.dart';
 import 'package:flutter/material.dart';
-
-
 
 class EmailVerificationScreen extends StatefulWidget {
   @override
-  _EmailVerificationScreenState createState() => _EmailVerificationScreenState();
+  _EmailVerificationScreenState createState() =>
+      _EmailVerificationScreenState();
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
@@ -13,7 +14,45 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: blue,
+              ), // Filled progress step
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ),
 
+              /// Filled progress step
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ),
+              // Unfilled progress step
+            ),
+          ],
+        ),
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 70.0, // Set the height you want
+      ),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -21,57 +60,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10), // Spacing for progress indicator
-              Center(
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.black),
-                      onPressed: () {
-                        // Handle back button action
-                      },
-                    ),
-                    SizedBox(width: 50,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 30,
-                          height: 7,
-
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color:Color(0xFF1DA1FA),
-                          ),// Filled progress step
-                        ),
-                        SizedBox(width: 5),
-                        Container(
-                          width: 30,
-                          height: 7,
-
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.shade300,
-
-                          ),/// Filled progress step
-                        ),
-                        SizedBox(width: 5),
-                        Container(
-                          width: 30,
-                          height: 7,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.shade300,
-
-                          ),
-                          // Unfilled progress step
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 40),
+              SizedBox(height: 20),
               Text(
                 "Let's verify your email",
                 style: TextStyle(
@@ -91,10 +80,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Color(0xFF007B5D))
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(color: Color(0xFF007B5D))),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               SizedBox(height: 20),
@@ -104,13 +93,20 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 children: [
                   Row(
                     children: [
-                      Checkbox(
-                        value: isEmailPreferred,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isEmailPreferred = value ?? false;
-                          });
-                        },
+                      Transform.scale(
+                        scale: 1.3,
+                        child: Checkbox(
+                          value: isEmailPreferred,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isEmailPreferred = value ?? false;
+                            });
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              side: BorderSide(
+                                  color: Color(0xffFFFFFF), width: 0.8)),
+                        ),
                       ),
                       Expanded(
                         child: Text(
@@ -120,7 +116,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -134,6 +132,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       ),
                       onPressed: () {
                         // Handle button action
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EmailVerifyScreen()));
                       },
                       child: Text(
                         'Continue',

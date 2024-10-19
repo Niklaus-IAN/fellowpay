@@ -1,5 +1,8 @@
+import 'package:fellowpay/Screens/Auth/register/password_success.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../../../Styles/colours.dart';
 
 class PasswordCreated extends StatefulWidget {
   @override
@@ -12,6 +15,45 @@ class _PasswordCreatedState extends State<PasswordCreated> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ), // Filled progress step
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: blue,
+              ),
+
+              /// Filled progress step
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ),
+              // Unfilled progress step
+            ),
+          ],
+        ),
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 70.0, // Set the height you want
+      ),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -19,61 +61,9 @@ class _PasswordCreatedState extends State<PasswordCreated> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black),
-                    onPressed: () {
-                      // Handle back button action
-                    },
-                  ),
-                  SizedBox(width: 50,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade300,
-
-                        ),
-                        ///   decoration: BoxDecoration(
-                        //                           borderRadius: BorderRadius.circular(10),
-                        //                           color:Color(0xFF1DA1FA),
-                        //                         ),/// Filled progress step
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color:Color(0xFF1DA1FA),
-                        ),// Filled progress step
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade300,
-
-                        ),
-                        // Unfilled progress step
-                      ),
-
-                    ],
-                  ),
-                ],
+              SizedBox(
+                height: 20,
               ),
-              SizedBox(height: 30,),
               Text(
                 "Create your password",
                 style: TextStyle(
@@ -99,53 +89,38 @@ class _PasswordCreatedState extends State<PasswordCreated> {
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: BorderSide(color: Color(0xFF007B5D)),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               SizedBox(height: 16),
               RichText(
                 text: TextSpan(
                   text: 'At least ',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Colors.black, fontSize: 17),
                   children: [
                     TextSpan(
                       text: '8 characters,',
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.none,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print("Terms of use clicked");
-                        },
                     ),
                     TextSpan(text: ' Containing '),
                     TextSpan(
                       text: 'a letter',
                       style: TextStyle(
                         color: Colors.black,
-                        decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print("Privacy Policies clicked");
-                        },
                     ),
                     TextSpan(text: ' and '),
                     TextSpan(
                       text: 'a number',
                       style: TextStyle(
                         color: Colors.black,
-                        decoration: TextDecoration.none,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print("Privacy Policies clicked");
-                        },
                     ),
                   ],
                 ),
@@ -164,6 +139,10 @@ class _PasswordCreatedState extends State<PasswordCreated> {
                   ),
                   onPressed: () {
                     // Handle button action
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PasswordSuccess()));
                   },
                   child: Text(
                     'Continue',

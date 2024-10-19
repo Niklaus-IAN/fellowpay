@@ -1,4 +1,7 @@
+import 'package:fellowpay/Styles/colours.dart';
 import 'package:flutter/material.dart';
+
+import 'birthday.dart';
 
 class AboutYourself extends StatefulWidget {
   @override
@@ -19,7 +22,43 @@ class _AboutYourselfState extends State<AboutYourself> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ), // Filled progress step
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ),
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: blue,
+              ),
+              // Unfilled progress step
+            ),
+          ],
+        ),
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 70.0, // Set the height you want
+      ),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -27,60 +66,9 @@ class _AboutYourselfState extends State<AboutYourself> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black),
-                    onPressed: () {
-                      // Handle back button action
-                    },
-                  ),
-                  SizedBox(width: 50,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade300,
-
-                        ),
-                        ///   decoration: BoxDecoration(
-                        //                           borderRadius: BorderRadius.circular(10),
-                        //                           color:Color(0xFF1DA1FA),
-                        //                         ),/// Filled progress step
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade300,
-
-                        ),
-                        // Unfilled progress step
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color:Color(0xFF1DA1FA),
-                        ),// Filled progress step
-                      ),
-                    ],
-                  ),
-                ],
+              SizedBox(
+                height: 10,
               ),
-              SizedBox(height: 30,),
               Text(
                 "Lastly, tell us more\nabout yourself",
                 style: TextStyle(
@@ -99,7 +87,7 @@ class _AboutYourselfState extends State<AboutYourself> {
               SizedBox(height: 32),
               Text(
                 'First name',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: black),
               ),
               SizedBox(height: 10),
               TextField(
@@ -110,15 +98,15 @@ class _AboutYourselfState extends State<AboutYourself> {
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Color(0xFF007B5D))
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      borderSide: BorderSide(color: Color(0xFF007B5D))),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               SizedBox(height: 16),
               Text(
                 'Last name',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: black),
               ),
               SizedBox(height: 10),
               TextField(
@@ -129,9 +117,9 @@ class _AboutYourselfState extends State<AboutYourself> {
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Color(0xFF007B5D))
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      borderSide: BorderSide(color: Color(0xFF007B5D))),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               Spacer(),
@@ -148,6 +136,8 @@ class _AboutYourselfState extends State<AboutYourself> {
                   ),
                   onPressed: () {
                     // Handle button action
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Birthday()));
                   },
                   child: Text(
                     'Continue',
@@ -163,5 +153,3 @@ class _AboutYourselfState extends State<AboutYourself> {
     );
   }
 }
-
-

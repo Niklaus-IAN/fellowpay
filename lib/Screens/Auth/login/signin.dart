@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../BottomNavigationBar/bottomnavigationbar.dart';
+import 'forgetpassword.dart';
+
 class SignIn extends StatefulWidget {
   @override
   _SignInState createState() => _SignInState();
@@ -39,26 +42,52 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 20),
               ListTile(
-                leading: Icon(Icons.sms, color: Color(0xFF1DA1FA)),
+                leading: Icon(
+                  Icons.sms,
+                  color: Color(0xFF1DA1FA),
+                  size: 35,
+                ),
                 title: Text("Password reset via SMS"),
-                  trailing: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Color(0xFF1DA1FA),
-                    child: Icon(Icons.arrow_forward_ios, color: Colors.white,size: 16,),),
+                trailing: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Color(0xFF1DA1FA),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
                 onTap: () {
                   // Handle SMS reset
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ForgetPasswordScreen()));
                 },
               ),
               Divider(),
               ListTile(
-                leading: Icon(Icons.email, color: Color(0xFF1DA1FA)),
+                leading: Icon(
+                  Icons.email,
+                  color: Color(0xFF1DA1FA),
+                  size: 35,
+                ),
                 title: Text("Password reset via Email"),
                 trailing: CircleAvatar(
                   radius: 20,
-                    backgroundColor: Color(0xFF1DA1FA),
-                    child: Icon(Icons.arrow_forward_ios, color: Colors.white,size: 16,),),
+                  backgroundColor: Color(0xFF1DA1FA),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
                 onTap: () {
                   // Handle Email reset
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ForgetPasswordScreen()));
                 },
               ),
             ],
@@ -78,16 +107,6 @@ class _SignInState extends State<SignIn> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black),
-                    onPressed: () {
-                      // Handle back button action
-                    },
-                  ),
-                ],
-              ),
               SizedBox(height: 20),
               Text(
                 "Sign in",
@@ -96,7 +115,7 @@ class _SignInState extends State<SignIn> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 30),
               Text(
                 'Your email address/Phone number',
                 style: TextStyle(fontSize: 16, color: Colors.black),
@@ -113,7 +132,8 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.circular(15.0),
                     borderSide: BorderSide(color: Color(0xFFE7EAEB)),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               SizedBox(height: 16),
@@ -133,7 +153,9 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: BorderSide(color: Color(0xFFE7EAEB)),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  suffixIcon: Icon(Icons.visibility_outlined),
                 ),
               ),
               SizedBox(height: 15),
@@ -150,6 +172,8 @@ class _SignInState extends State<SignIn> {
                   ),
                   onPressed: () {
                     // Handle sign in action
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyHomePage()));
                   },
                   child: Text(
                     'Sign in',
@@ -166,7 +190,7 @@ class _SignInState extends State<SignIn> {
                     'Forgot Password?',
                     style: TextStyle(
                       color: Colors.red,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),

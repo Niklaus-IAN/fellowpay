@@ -1,6 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../../Styles/colours.dart';
+import 'allverificationsuccessful.dart';
+
 class Birthday extends StatefulWidget {
   @override
   _BirthdayState createState() => _BirthdayState();
@@ -20,6 +23,43 @@ class _BirthdayState extends State<Birthday> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ), // Filled progress step
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.shade300,
+              ),
+            ),
+            SizedBox(width: 5),
+            Container(
+              width: 30,
+              height: 7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: blue,
+              ),
+              // Unfilled progress step
+            ),
+          ],
+        ),
+        centerTitle: true,
+        elevation: 0,
+        toolbarHeight: 70.0, // Set the height you want
+      ),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -27,50 +67,9 @@ class _BirthdayState extends State<Birthday> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black),
-                    onPressed: () {
-                      // Handle back button action
-                    },
-                  ),
-                  SizedBox(width: 50),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade300,
-                        ),
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                        width: 30,
-                        height: 7,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFF1DA1FA),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+              SizedBox(
+                height: 10,
               ),
-              SizedBox(height: 30),
               Text(
                 "What is your date of birth?",
                 style: TextStyle(
@@ -83,13 +82,13 @@ class _BirthdayState extends State<Birthday> {
                 "We need your DOB to verify your account.",
                 style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 14,
+                  fontSize: 15,
                 ),
               ),
               SizedBox(height: 32),
               Text(
                 'Date of birth',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: black),
               ),
               SizedBox(height: 10),
               TextField(
@@ -103,7 +102,7 @@ class _BirthdayState extends State<Birthday> {
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide(color: Color(0xFF007B5D))),
                   contentPadding:
-                  EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 ),
               ),
               SizedBox(height: 10),
@@ -128,21 +127,27 @@ class _BirthdayState extends State<Birthday> {
               Spacer(),
               Row(
                 children: [
-                  Checkbox(
-                    checkColor: Colors.white,
-
-                    activeColor: Color(0xFF1DA1FA),
-                    value: _isChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        _isChecked = value!;
-                      });
-                    },
+                  Transform.scale(
+                    scale: 1.3,
+                    child: Checkbox(
+                      checkColor: Colors.white,
+                      activeColor: Color(0xFF1DA1FA),
+                      value: _isChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          _isChecked = value!;
+                        });
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          side:
+                              BorderSide(color: Color(0xffFFFFFF), width: 0.8)),
+                    ),
                   ),
                   Expanded(
                     child: Text(
                       'Check box to be informed about marketing information or any special offer',
-                      style: TextStyle(fontSize: 13,color: Colors.black),
+                      style: TextStyle(fontSize: 13, color: Colors.black),
                     ),
                   ),
                 ],
@@ -151,7 +156,7 @@ class _BirthdayState extends State<Birthday> {
               RichText(
                 text: TextSpan(
                   text: 'By registering, you agree to our ',
-                  style: TextStyle(color: Colors.black, fontSize: 13),
+                  style: TextStyle(color: Colors.black, fontSize: 17),
                   children: [
                     TextSpan(
                       text: 'Terms of use',
@@ -159,11 +164,6 @@ class _BirthdayState extends State<Birthday> {
                         color: Color(0xFF1DA1FA),
                         decoration: TextDecoration.underline,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Handle Terms of Use click
-                          print("Terms of use clicked");
-                        },
                     ),
                     TextSpan(text: ' and '),
                     TextSpan(
@@ -172,11 +172,6 @@ class _BirthdayState extends State<Birthday> {
                         color: Color(0xFF1DA1FA),
                         decoration: TextDecoration.underline,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Handle Privacy Policies click
-                          print("Privacy Policies clicked");
-                        },
                     ),
                   ],
                 ),
@@ -195,6 +190,10 @@ class _BirthdayState extends State<Birthday> {
                   ),
                   onPressed: () {
                     // Handle button action
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VerificationSuccessful()));
                   },
                   child: Text(
                     'Continue',
@@ -210,5 +209,3 @@ class _BirthdayState extends State<Birthday> {
     );
   }
 }
-
-
