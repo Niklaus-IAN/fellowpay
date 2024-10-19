@@ -16,10 +16,8 @@ class _AllTransactionsState extends State<AllTransactions> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         centerTitle: true,
         elevation: 1,
-        backgroundColor: white,
         toolbarHeight: 80.0, // Set the height you want
         title: Text(
           'History',

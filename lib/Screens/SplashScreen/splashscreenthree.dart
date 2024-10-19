@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
 import '../../Styles/colours.dart';
 import '../../Widgets/buttons.dart';
 import '../../Widgets/clippers.dart';
+import '../Auth/register/register.dart';
 
 class SplashThree extends StatefulWidget {
   const SplashThree({super.key});
@@ -15,39 +14,47 @@ class SplashThree extends StatefulWidget {
 
 class _SplashThreeState extends State<SplashThree> {
   late PageController _pageController;
-  // late int indexes;
+  late Timer _timer; // Define the timer
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
-    startTimer();
+    startTimer(); // Start the automatic page switcher timer
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _timer.cancel(); // Cancel the timer when the widget is disposed
     super.dispose();
   }
 
+  // Method to start a periodic timer to switch between pages
   void startTimer() {
-    Timer.periodic(const Duration(seconds: 10), (timer) {
-      _currentIndex = (_currentIndex + 1) % imageList.length;
-      _pageController.animateToPage(
-        _currentIndex,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
+    _timer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (mounted) {
+        setState(() {
+          _currentIndex = (_currentIndex + 1) % imageList.length;
+          _pageController.animateToPage(
+            _currentIndex,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        });
+      }
     });
   }
 
+  // Sample image list
   List<String> imageList = [
     'assets/images/Plain-credit-card-unscreen 2.png',
     'assets/images/Plain-credit-card-unscreen 1.png',
     'assets/images/Plain-credit-card-unscreen 1-1.png'
   ];
 
+  // Sample text list
   List<String> textList = [
     'Now easier to pay bills online!',
     'AI inclusivity you can trust!',
@@ -56,51 +63,51 @@ class _SplashThreeState extends State<SplashThree> {
 
   @override
   Widget build(BuildContext context) {
-    int indexes = _currentIndex;
-
+    print('Wht is the problem');
     return Scaffold(
       body: Stack(
         children: [
-          // Main blue background
+          // Main background color
           Container(
-            color: white, // Adjust the blue color if needed
+            color: white, // Adjust the background color if needed
           ),
-          // Bottom right white circle (cut-off)
+          // Positioned circle decoration
           Positioned(
-            top: -40, // Shifts the circle upwards, off-screen
-            left: -80, // Shifts the circle to the left, off-screen
+            top: -40,
+            left: -80,
             child: Container(
-              height: 180, // Adjust size to match the circle
+              height: 180,
               width: 180,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                  color: blue,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: black.withOpacity(0.2), // Shadow color
-                      offset: Offset(5.0, 0.0), // Offset from right
-                      blurRadius: 10, // Spread of the shadow
-                      spreadRadius: 0.0,
-                    ),
-                  ]),
+                color: blue,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: black.withOpacity(0.2),
+                    offset: const Offset(5.0, 0.0),
+                    blurRadius: 10,
+                    spreadRadius: 0.0,
+                  ),
+                ],
+              ),
             ),
           ),
+          // Positioned wave decoration at the bottom
           Positioned(
-            bottom: 0, // Position at the bottom
+            bottom: 0,
             left: 0,
             right: 0,
             child: ClipShadowPath(
               shadow: Shadow(
                 blurRadius: 10.0,
-                color: Colors.black.withOpacity(0.2), // Adjust shadow color
-                offset: Offset(0, 4), // Adjust shadow offset
+                color: Colors.black.withOpacity(0.2),
+                offset: const Offset(0, 4),
               ),
               clipper: BottomWaveClipper(),
               child: Container(
-                height: MediaQuery.of(context).size.height *
-                    0.4, // Adjust height according to your need
-                color: Colors.blue, // Adjust background color
+                height: MediaQuery.of(context).size.height * 0.4,
+                color: blue,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
@@ -113,43 +120,21 @@ class _SplashThreeState extends State<SplashThree> {
                           padding: const EdgeInsets.only(top: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: indexes == 0 ? 36 : 10,
+                            children: List.generate(3, (index) {
+                              return AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                margin: const EdgeInsets.symmetric(horizontal: 5),
+                                width: _currentIndex == index ? 36 : 10,
                                 height: 10,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
-                                  color: indexes == 0 ? black : white,
+                                  color: _currentIndex == index ? black : white,
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                width: indexes == 1 ? 36 : 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: indexes == 1 ? black : white,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                width: indexes == 2 ? 36 : 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: indexes == 2 ? black : white,
-                                ),
-                              ),
-                            ],
+                              );
+                            }),
                           ),
                         ),
-                        SizedBox(
-                          height: 50,
-                        ),
+                        const SizedBox(height: 50),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -158,26 +143,23 @@ class _SplashThreeState extends State<SplashThree> {
                               width: 180,
                               child: MyOutlinedButton(
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(builder: (context) => login()),
-                                  // );
+                                  print('Skip button pressed');
                                 },
                                 gradient: customGradient01,
                                 style: ElevatedButton.styleFrom(
                                   splashFactory: NoSplash.splashFactory,
                                   backgroundColor: blue,
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        10), // Change the border radius here
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
                                 child: Text(
                                   'Skip',
                                   style: TextStyle(
-                                      color: white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14),
+                                    color: white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),
@@ -185,32 +167,34 @@ class _SplashThreeState extends State<SplashThree> {
                               height: 50,
                               width: 180,
                               child: ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    splashFactory: NoSplash.splashFactory,
-                                    backgroundColor: white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // Change the border radius here
-                                    ),
+                                onPressed: () {
+                                  print('Next button pressed');
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  splashFactory: NoSplash.splashFactory,
+                                  backgroundColor: white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        'Next',
-                                        style: TextStyle(
-                                            color: black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_sharp,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      'Next',
+                                      style: TextStyle(
                                         color: black,
-                                      )
-                                    ],
-                                  )),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_forward_sharp,
+                                      color: black,
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -221,48 +205,47 @@ class _SplashThreeState extends State<SplashThree> {
               ),
             ),
           ),
+          // PageView content with images and text
           Positioned.fill(
             child: Align(
               alignment: Alignment.center,
-              child: PageView.builder(
+              child: IgnorePointer(
+                child: PageView.builder(
                   controller: _pageController,
                   itemCount: imageList.length,
                   onPageChanged: (index) {
                     setState(() {
                       _currentIndex = index;
-
-                      indexes = _currentIndex;
                     });
-                    // print(_currentIndex);
                   },
                   itemBuilder: (context, index) {
                     return AnimatedSwitcher(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       child: _currentIndex == index
                           ? Container(
-                              height: 400,
-                              color: Colors.transparent,
-                              child: Column(
-                                children: [
-                                  Image.asset(
-                                      imageList[index]),
-                                  const SizedBox(
-                                    height: 23,
-                                  ),
-                                  Text(
-                                    textList[indexes],
-                                    style: TextStyle(
-                                        color: black,
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
+                        height: 400,
+                        color: Colors.transparent,
+                        child: Column(
+                          children: [
+                            Image.asset(imageList[index]),
+                            const SizedBox(height: 23),
+                            Text(
+                              textList[index],
+                              style: TextStyle(
+                                color: black,
+                                fontStyle: FontStyle.italic,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
                               ),
-                            )
+                            ),
+                          ],
+                        ),
+                      )
                           : const SizedBox.shrink(),
                     );
-                  }), // Replace with your loading widget
+                  },
+                ),
+              ),
             ),
           ),
         ],
@@ -270,6 +253,7 @@ class _SplashThreeState extends State<SplashThree> {
     );
   }
 }
+
 
 class WaveClipper extends CustomClipper<Path> {
   @override

@@ -88,6 +88,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                       context,
                                       MaterialPageRoute(builder: (context) => NotificationChange()),
                                     );
+
+                                    // Navigate to the TransactionDetailScreen
+                                    // Navigator.of(context).push(MaterialPageRoute(
+                                    //   builder: (context) => NotificationChange(),
+                                    // ));
+
+                                    // // Use pushReplacement to remove the Bottom Navigation Bar
+                                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                    //   builder: (context) => NotificationChange(),
+                                    // ));
                                   },
                                   child: SizedBox(
                                     width: 42,

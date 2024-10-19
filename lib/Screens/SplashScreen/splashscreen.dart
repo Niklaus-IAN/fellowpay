@@ -1,3 +1,4 @@
+import 'package:fellowpay/Screens/SplashScreen/splashscreentwo.dart';
 import 'package:fellowpay/Styles/colours.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,6 +53,16 @@ class _SplashOneState extends State<SplashOne> with SingleTickerProviderStateMix
       setState(() {
         display = true; // Show the SVG image after 30 seconds
       });
+
+      if (display) {
+        Future.delayed(const Duration(seconds: 5), () {
+          // Navigate to the new screen after an additional 5 seconds
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SplashTwo()),
+          );
+        });
+      }
     });
   }
 
